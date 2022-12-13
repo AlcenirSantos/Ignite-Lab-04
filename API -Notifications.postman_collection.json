@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "d7348523-27a9-4a6b-a366-62ec41574aa7",
+		"name": "API -Notifications",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18990394"
+	},
+	"item": [
+		{
+			"name": "List Notifications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{uri}}/api/notifications",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"api",
+						"notifications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Notification",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var uuid = require('uuid');\r",
+							"var myUuid = uuid.v4();\r",
+							"pm.environment.set('uuid', myUuid);\r",
+							"console.log(myUuid);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"recipientId\": \"{{uuid}}\",\r\n    \"content\": \"O melhor UX para Voce\",\r\n    \"category\": \"UX/UI\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{uri}}/api/notifications",
+					"host": [
+						"{{uri}}"
+					],
+					"path": [
+						"api",
+						"notifications"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

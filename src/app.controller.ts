@@ -15,6 +15,7 @@ export class AppController {
   @Post()
   async createNotification(@Body() body: CreateNotificationBody) {
     const {recipientId, content, category} = body;
+    
     await this.prisma.notification.create({
       data: {
         id: randomUUID(), 
